@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Option</title>
+      <style>
+         * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(1000deg, #6f3da0, #4c8c81);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 100px auto;
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInContainer 1s ease; /* Fade-in animation */
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+.option {
+    margin: 30px 0;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Fade-in animation */
+@keyframes fadeInContainer {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+         
+      </style>
+   </head>
+   <body>
+      <form class="container" onsubmit="handleSubmit(event)">
+         <h2>Choose One Option</h2>
+         <div class="option">
+            <input id="create" type="radio" name="option" value="createElection">
+            <label>Create Election</label>
+            <input id="display" type="radio" name="option" value="seeVotingStatus">
+            <label>See Voting Status</label>
+         </div>
+
+         <button type="submit">Select Option</button>
+      </form>
+      <script>
+         function handleSubmit(event){
+            event.preventDefault();
+
+            const ele = document.getElementsByName("option");
+            let type = "";
+            for (let i = 0; i < ele.length; i++) {
+               if (ele[i].checked) {
+                  type = ele[i].id;
+                  break;
+               }
+            }
+
+            if(type == "display"){
+               window.location.href="Display-Voting-Status.html";
+            }
+            else window.location.href="Election-Customization.html";
+         }
+      </script>
+   </body>
+
+</html>

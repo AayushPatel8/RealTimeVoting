@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Voting Status</title>
+   <style>
+      body {
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         margin: 0;
+         padding: 0;
+         background: linear-gradient(1000deg, #667eea, #884ba2, #ea66cd);
+      }
+
+      .container {
+         width: 300px;
+         margin: 100px auto;
+         background-color: #ccc;
+         padding: 20px;
+         border-radius: 5px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         animation: fadeInContainer 1s ease;
+         /* Fade-in animation */
+      }
+
+      h2 {
+         text-align: center;
+      }
+
+      .candidate {
+         margin-bottom: 10px;
+      }
+
+      .candidate span {
+         font-weight: bold;
+      }
+
+      /* Fade-in animation */
+      @keyframes fadeInContainer {
+         from {
+            opacity: 0;
+            transform: translateY(-20px);
+         }
+
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div id="electionResults" class="container"></div>
+
+   <script>
+      function autoRefresh() {
+         window.location = window.location.href;
+      }
+      setInterval('autoRefresh()', 2000);
+      let allElection;
+      document.addEventListener("DOMContentLoaded", function () {
+         fetch("http://localhost:3000/api/elections")
+            .then(response => response.json())
+            .then(elections => {
+               console.log(elections);
+               allElections = elections;
+            })
+            .then(() => {
+               var electionResultsContainer = document.getElementById('electionResults');
+               allElections.forEach(function (election) {
+                  // Create elements for the election title and candidates
+                  var electionContainer = document.createElement('div');
+                  var electionTitle = document.createElement('h2');
+                  var candidatesDiv = document.createElement('div');
+
+                  // Set the election title
+                  electionTitle.innerText = election.title;
+
+                  // Append the title to the election container
+                  electionContainer.appendChild(electionTitle);
+
+                  // Display candidates and their vote counts
+                  election.names.forEach(function (candidate) {
+                     var candidateDiv = document.createElement('div');
+                     candidateDiv.classList.add('candidate');
+                     candidateDiv.innerHTML = '<span>' + candidate.name + '</span>: ' + candidate.votes + ' votes';
+                     candidatesDiv.appendChild(candidateDiv);
+                  });
+
+                  // Append the candidates to the election container
+                  electionContainer.appendChild(candidatesDiv);
+
+                  // Append the election container to the election results container
+                  electionResultsContainer.appendChild(electionContainer);
+               });
+            })
+            .catch(error => console.error("Error fetching elections:", error));
+      });
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <style>
+        /* Advanced CSS for Voting Page */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+    color: #007bff; /* Added color for consistency */
+    font-size: 1.8rem; /* Increased font size for emphasis */
+    margin-bottom: 20px; /* Added spacing below the heading */
+}
+
+.nominee-container {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s ease; /* Added transition effect for smoother interaction */
+}
+
+.nominee-container:hover {
+    transform: translateY(-5px); /* Added slight elevation on hover */
+}
+
+.nominee-container:last-child {
+    margin-bottom: 0;
+}
+
+.nominee-container h3 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 1.5rem; /* Increased font size for emphasis */
+}
+
+.nominee {
+    margin-bottom: 10px;
+}
+
+.nominee label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    color: #333; /* Adjusted color for better contrast */
+}
+
+.vote-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem; /* Adjusted font size for consistency */
+}
+
+.vote-btn:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 20px; /* Increased margin for better separation */
+    text-align: center;
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.2rem; /* Increased font size for emphasis */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Vote for Your Favorite Nominee</h2>
+        
+        <div id="nominee-section"></div>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Retrieve number of nominees from local storage
+        
+        // nominee.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve the stored data from local storage
+    var storedData = localStorage.getItem('formData');
+
+    if (storedData) {
+        // Parse the stored JSON data
+        var formData = JSON.parse(storedData);
+
+        // Update the page content based on the retrieved data
+        updatePageContent(formData);
+    }
+});
+
+function updatePageContent(formData) {
+    // Set the election title
+    document.title = formData.title;
+
+    // Create nominees based on the stored candidates array
+    var container = document.querySelector('.container');
+
+    if (formData && formData.candidates && formData.candidates.length > 0) {
+        for (var i = 0; i < formData.candidates.length; i++) {
+            var nomineeContainer = document.createElement('div');
+            nomineeContainer.classList.add('nominee-container');
+
+            var nomineeHeader = document.createElement('h3');
+            nomineeHeader.textContent = 'Nominee ' + (i + 1);
+
+            var nomineeDiv = document.createElement('div');
+            nomineeDiv.classList.add('nominee');
+
+            var nomineeInput = document.createElement('input');
+            nomineeInput.type = 'radio';
+            nomineeInput.id = 'nominee' + (i + 1);
+            nomineeInput.name = 'nominee';
+            nomineeInput.value = formData.candidates[i];
+
+            var nomineeLabel = document.createElement('label');
+            nomineeLabel.setAttribute('for', 'nominee' + (i + 1));
+            nomineeLabel.textContent = formData.candidates[i];
+
+            var voteButton = document.createElement('button');
+            voteButton.classList.add('vote-btn');
+            voteButton.id = 'button'+(i+1);
+            voteButton.textContent = 'Vote';
+            voteButton.onclick = function () {
+                submitVote(formData.candidates[i]);
+            };
+            console.log(formData.candidates[i]);
+            nomineeDiv.appendChild(nomineeInput);
+            nomineeDiv.appendChild(nomineeLabel);
+
+            nomineeContainer.appendChild(nomineeHeader);
+            nomineeContainer.appendChild(nomineeDiv);
+            nomineeContainer.appendChild(voteButton);
+
+            container.appendChild(nomineeContainer);
+        }
+    }
+}
+
+function submitVote(nominee) {
+    var votType = document.querySelector('input[name="nominee"]:checked').value;
+    // console.log(votType);
+    document.getElementById('message').innerHTML = "Thank you for your vote for "+votType+" !";
+    save(nominee);
+}
+
+function save(nominee) {
+    var votType = document.querySelector('input[name="nominee"]:checked').id;
+    let voteData = localStorage.getItem('voteData');
+    // console.log(votType[7]-1);
+    // voteData[parseInt(votType[7])-1]= voteData[parseInt(votType[7])-1]+1;
+    //  console.log(voteData[parseInt(votType[7])-1]);
+    // console.log(votType[7]-1)
+    // voteData[votType[7]-1] = parseInt(voteData[votT  ype[7]-1]) + parseInt(1);
+    //console.log(parseInt(voteData[votType[7]-1]) + parseInt(1))
+    let x = parseInt(voteData[votType[7]-1]) + parseInt(1);
+    console.log(x);
+    voteData[votType[7]-1]=x;
+    console.log(voteData[votType[7]-1])
+}
+
+    </script>
+</body>
+</html>

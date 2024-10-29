@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <script src="nominee.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        .nominee-container {
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .nominee-container:last-child {
+            margin-bottom: 0;
+        }
+        .nominee-container h3 {
+            margin-top: 0;
+            color: black;
+        }
+        .nominee {
+            margin-bottom: 10px;
+        }
+        .nominee label {
+            display: block;
+            font-weight: bold;
+        }
+        .vote-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .vote-btn:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Vote for Your Favorite Nominee</h2>
+        
+        <div class="nominee-container">
+            <h3>Nominee 1</h3>
+            <div class="nominee">
+                <input type="radio" id="nominee1" name="nominee" value="Nominee 1">
+                <label for="nominee1">Nominee 1</label>
+            </div>
+            <button class="vote-btn" onclick="submitVote('Nominee 1')">Vote</button>
+        </div>
+
+        <div class="nominee-container">
+            <h3>Nominee 2</h3>
+            <div class="nominee">
+                <input type="radio" id="nominee2" name="nominee" value="Nominee 2">
+                <label for="nominee2">Nominee 2</label>
+            </div>
+            <button class="vote-btn" onclick="submitVote('Nominee 2')">Vote</button>
+        </div>
+
+        <div class="nominee-container">
+            <h3>Nominee 3</h3>
+            <div class="nominee">
+                <input type="radio" id="nominee3" name="nominee" value="Nominee 3">
+                <label for="nominee3">Nominee 3</label>
+            </div>
+            <button class="vote-btn" onclick="submitVote('Nominee 3')">Vote</button>
+        </div>
+
+        <div class="nominee-container">
+            <h3>Nominee 4</h3>
+            <div class="nominee">
+                <input type="radio" id="nominee4" name="nominee" value="Nominee 4">
+                <label for="nominee4">Nominee 4</label>
+            </div>
+            <button class="vote-btn" onclick="submitVote('Nominee 4')">Vote</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <title>Create Voter Account</title>
+    <style>
+        body {
+
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6f3da0, #4c8c81);
+            /* background: #131417; */
+            color: white;
+
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        .container {
+            width: 30%;
+            margin: 100px auto;
+            background-color: #ffffffa4;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #3b3b3e;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .eye-container {
+            display: flex;
+        }
+
+        .eye {
+            /* display: flex; */
+            margin-top: 10px;
+        }
+
+        .eye input[type="password"] {
+            /* Take remaining space */
+
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .eye i {
+            margin-top: 30px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .eye i:hover {
+            background-color: #3b3b3e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Create Voter Account</h2>
+        <form id="voterForm" action="#">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="option">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" checked>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label>
+            </div>
+            <div>
+                <label for="phoneno">Phone No.:</label>
+                <input type="text" id="phoneno" name="phoneno" required>
+            </div>
+            <div>
+                <label for="adharcardno">Adharcard No.:</label>
+                <input type="text" id="adharcardno" name="adharcardno" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <div style="display: flex;"><input type="password" id="password" name="password" required>
+                    <i class="far fa-eye" id="togglePassword"
+                        style="color: black;margin-top: 10px;margin-left: -30px; cursor: pointer;"></i>
+                </div>
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm password:</label>
+                <div style="display: flex;"><input type="password" id="confirmPassword" name="confirmPassword" minlength="6" minlength="6" required>
+                    <i class="far fa-eye" id="togglePasswordcnf"
+                        style="color: black;margin-top: 10px;margin-left: -30px; cursor: pointer;"></i>
+                </div>
+            </div>
+            <input type="submit" value="Create Account">
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const togglePasswordIcons = document.querySelectorAll('.fa-eye');
+
+    function togglePasswordVisibility(inputField) {
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+    }
+
+    togglePasswordIcons.forEach(function (icon) {
+        icon.addEventListener('click', function () {
+            const targetInputId = this.dataset.target;
+            const targetInput = document.getElementById(targetInputId);
+            togglePasswordVisibility(targetInput);
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validatePhoneNumber(phone) {
+        const phoneRegex = /^\d{10}$/;
+        return phoneRegex.test(phone);
+    }
+
+    function validateAadharCard(adharcard) {
+        const adharcardRegex = /^\d{12}$/;
+        return adharcardRegex.test(adharcard);
+    }
+
+    document.getElementById('voterForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const phone = document.getElementById('phoneno').value;
+        const adharcard = document.getElementById('adharcardno').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Validation
+        if (!validateEmail(email)) {
+            alert("Invalid email address!");
+            return;
+        }
+
+        if (!validatePhoneNumber(phone)) {
+            alert("Invalid phone number!");
+            return;
+        }
+
+        if (!validateAadharCard(adharcard)) {
+            alert("Invalid Aadhar card number!");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const formData = {
+            "username": name,
+            "email": email,
+            "gender": gender,
+            "phone": phone,
+            "adharcard": adharcard,
+            "password": password,
+            "confirmPassword": confirmPassword,
+            "isAdmin": "false"
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Access-Control-Allow-Credentials': 'true'
+                },
+                body: JSON.stringify(formData)
+            });
+            if (response.ok) {
+                alert("Created successfully!");
+                window.location.href = 'login.html';
+            } else {
+                throw new Error('Failed to create account');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+    </script>
+</body>
+
+</html>

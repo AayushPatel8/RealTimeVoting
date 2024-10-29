@@ -1,0 +1,135 @@
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background:linear-gradient(1000deg, #7e94c4,#9362b6,#a25fae);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 100px; /* Adjusted margin-top to padding-top for better spacing */
+}
+
+/* CSS for Container Division */
+
+.container {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 20px;
+   background-color: #c0caafe7; /* Light gray background */
+   border-radius: 8px; /* Rounded corners */
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.title {
+   color: #007bff; /* Blue title color */
+   font-size: 1.5rem; /* Title font size */
+   font-weight: bold; /* Title font weight */
+   margin-bottom: 10px; /* Bottom margin */
+}
+
+p {
+   font-size: 1.1rem; /* Paragraph font size */
+   color: #333; /* Paragraph text color */
+   margin-bottom: 20px; /* Bottom margin */
+}
+
+
+button {
+   background-color: #4CAF50;
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   text-align: center;
+   text-decoration: none;
+   font-size: 1rem; /* Changed font size for consistency */
+   margin: 4px 10px;
+   cursor: pointer;
+   border-radius: 10px;
+   transition: background-color 0.3s ease; /* Added transition effect for smoother hover */
+}
+
+button:hover {
+   background-color: #45a049;
+}
+
+h1 {
+   color: #333;
+   font-size: 1.5rem; /* Changed font size for consistency */
+   margin-bottom: 20px; /* Added margin for spacing */
+}
+
+ul {
+   list-style-type: none;
+   padding: 0;
+}
+
+li {
+   margin-bottom: 10px; /* Increased margin for better separation */
+}
+
+.election-details {
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   margin-bottom: 20px;
+}
+
+.election-details h2 {
+   color: #333;
+   font-size: 1.2rem; /* Changed font size for consistency */
+   margin-bottom: 10px;
+}
+
+.election-details p {
+   color: #666;
+}
+
+/* Vote button styles */
+.vote-button {
+   background-color: #007bff;
+}
+
+.vote-button:hover {
+   background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+   .container {
+      max-width: 95%;
+   }
+
+   .title {
+      font-size: 1.3rem; /* Adjusted font size for smaller screens */
+   }
+
+   h1 {
+      font-size: 1.3rem; /* Adjusted font size for smaller screens */
+   }
+
+   .election-details h2 {
+      font-size: 1rem; /* Adjusted font size for smaller screens */
+   }
+}
+
+@keyframes fadeInBG {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 1;
+   }
+}
+
+/* Animation for fading in container */
+@keyframes fadeInContainer {
+   from {
+       transform: translateY(-20px);
+       opacity: 0;
+   }
+   to {
+       transform: translateY(0);
+       opacity: 1;
+   }
+}

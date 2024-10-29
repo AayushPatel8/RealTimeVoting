@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    background-image:  url('/Image/vote.avif');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.I1{
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 100px;
+}
+.svlogo{
+    height: 40px;
+}
+.dropdown-item{
+    color: black;
+    margin:2px;
+}
+
+.table1{
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(185, 198, 199, 0.607);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.voting-info {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+button {
+    padding: 0.8em 3em;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+
+.container p {
+    color: #363434;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.btn{
+    margin-right: 8px;
+}
+
+.login-button {
+    text-align: center;
+}
+
+.login-button button {
+    background-color: #28a745; /* Green */
+}
+
+.login-button button:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.footerEl a{
+    text-decoration: none;
+}
+

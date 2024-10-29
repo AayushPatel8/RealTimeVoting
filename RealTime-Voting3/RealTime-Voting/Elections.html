@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Choose Election</title>
+   <link rel="stylesheet" href="./election.css">
+</head>
+
+<body>
+   <div class="container">
+   <div class="title">Election Title</div>
+   <p>Select one to see more details...</p>
+   <div id="electionList"></div></div>
+
+   <script>
+      document.addEventListener("DOMContentLoaded", function () {
+         fetch("http://localhost:3000/api/elections")
+            .then(response => response.json())
+            .then(elections => {
+               const electionListDiv = document.getElementById("electionList");
+               elections.forEach(election => {
+                  const button = document.createElement("button");
+                  button.textContent = election.title;
+                  button.addEventListener("click", function () {
+                     localStorage.setItem("selectedElection", JSON.stringify(election));
+                     window.location.href = "ElectionDetails.html";
+                  });
+                  electionListDiv.appendChild(button);
+               });
+            })
+            .catch(error => console.error("Error fetching elections:", error));
+      });
+   </script>
+
+</body>
+
+</html>
